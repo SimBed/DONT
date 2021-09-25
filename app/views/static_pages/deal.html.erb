@@ -1,0 +1,77 @@
+<div class="baize">
+  <div class ="deal_btn_container my-2">
+      <%= link_to "DEAL", root_path, class: "btn btn-lg btn-text text-white bg-dark" %>
+  </div>
+  <div class ="d-flex hand-NS">
+    <% @north.in_order.cards.each do |c| %>
+        <div class="kard-container"><%= image_tag( "#{c.to_s}.png", class: 'kard') %></div>
+    <% end %>
+  </div>
+  <div class ="ns-hand-summary mt-1">
+    <span class="pr-2"><%= "#{@north.distribution_summary}" %> </span>
+  </div>
+  <div class ="ns-hand-summary mt-1">
+    <span class="points"><%= @north.points %></span>
+  </div>
+
+  <div class ="d-flex hand-WE">
+<div>
+    <div class ="we-hand-summary mt-1">
+      <span class="pr-2"><%= "#{@west.distribution_summary}" %> </span>
+    </div>
+    <div class ="we-hand-summary mt-1">
+      <span class="points"><%= @west.points %></span>
+    </div>
+</div>
+
+    <div class ="d-flex flex-column hand-W">
+      <% @west.group_by_suit.each do |suit_group| %>
+         <div class="d-flex">
+           <% suit_group.each do |c| %>
+              <div class="kard-container"> <%= image_tag( "#{c.to_s}.png", class: 'kard') %> </div>
+           <% end %>
+         </div>
+      <% end %>
+    </div>
+
+	  <div class ="d-flex flex-column hand-E ms-auto">
+      <% @east.group_by_suit.each do |suit_group| %>
+			   <div class ="d-flex">
+           <% suit_group.each do |c| %>
+             <div class="kard-container"> <%= image_tag( "#{c.to_s}.png", class: 'kard') %> </div>
+           <% end %>
+			   </div>
+      <% end %>
+    </div>
+    <div>
+        <div class ="we-hand-summary mt-1">
+          <span class="pr-2"><%= "#{@east.distribution_summary}" %> </span>
+        </div>
+        <div class ="we-hand-summary mt-1">
+          <span class="points"><%= @east.points %></span>
+        </div>
+    </div>
+
+  </div>
+
+<div class= "south-summary">
+  <div class ="ns-hand-summary mt-1">
+    <span class="pr-2"><%= "#{@south.distribution_summary}" %> </span>
+  </div>
+  <div class ="ns-hand-summary mt-1">
+    <span class="points"><%= @south.points %></span>
+  </div>
+</div>
+
+  <div class ="d-flex hand-NS mt-1">
+    <% @south.in_order.cards.each do |c| %>
+        <div class="kard-container"><%= image_tag( "#{c.to_s}.png", class: 'kard') %></div>
+    <% end %>
+  </div>
+
+  <div class ="link_container mt-4">
+      <a href="https://www.bridgebum.com/cappelletti.php" target="_blank" class= "text-white bg-dark">Cappelletti</a>
+  </div>
+  <div class ="link_container mt-2">
+      <a href="https://www.bridgebum.com/dont.php" target="_blank" class= "text-white bg-dark">DONT</a>
+  </div>
