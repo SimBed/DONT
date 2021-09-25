@@ -9,9 +9,16 @@ body {
 
 .deal_btn_container {
   display: flex;
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
+
+.deal_btn_container a:first-child {
+margin-right: 1em;
+}
+
 .baize {
   padding-left: 7em;
   padding-right: 7em;

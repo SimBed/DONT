@@ -14,7 +14,13 @@ class StaticPagesController < ApplicationController
       deck.cards = Ordered_cards.dup
       deck.shuffle
       hands = deck.deal
-    end until hands[0].weak_1NT? && hands[2].weak?(7) || hands[0].strong_1NT? && hands[2].weak?(6)
+      if params[:NT] == 'weak'
+        until_ind = hands[0].weak_1NT? && hands[2].weak?(12)
+      else
+        until_ind = hands[0].strong_1NT? && hands[2].weak?(12)
+      end
+    end until until_ind
+    
     @hands = hands
     @west = @hands[0]
     @north = @hands[1]

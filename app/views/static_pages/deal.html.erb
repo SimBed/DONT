@@ -1,6 +1,7 @@
 <div class="baize">
-  <div class ="deal_btn_container my-2">
-      <%= link_to "DEAL", root_path, class: "btn btn-lg btn-text text-white bg-dark" %>
+  <div class ="deal_btn_container">
+    <%= link_to "WEAK NT", root_path(NT: 'weak'), class: "btn btn-lg btn-text text-white bg-dark mr-2" %>
+    <%= link_to "STRONG NT", root_path(NT: 'strong'), class: "btn btn-lg btn-text text-white bg-dark" %>
   </div>
   <div class ="d-flex hand-NS">
     <% @north.in_order.cards.each do |c| %>
@@ -70,8 +71,8 @@
   </div>
 
   <div class ="link_container mt-4">
-      <a href="https://www.bridgebum.com/cappelletti.php" target="_blank" class= "text-white bg-dark">Cappelletti</a>
+      <a href="https://www.bridgebum.com/cappelletti.php" target="_blank" class= "text-white">link to Cappelletti</a>
   </div>
   <div class ="link_container mt-2">
-      <a href="https://www.bridgebum.com/dont.php" target="_blank" class= "text-white bg-dark">DONT</a>
+      <a href="https://www.bridgebum.com/dont.php" target="_blank" class= "text-white">link to DONT</a>
   </div>
