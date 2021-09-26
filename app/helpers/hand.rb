@@ -74,7 +74,7 @@ class Hand
       balanced? && points.between?(15,17)
     end
 
-    def weak?(points)
+    def less_than?(points)
       self.points <= points
     end
   end

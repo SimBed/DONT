@@ -1,7 +1,7 @@
 <div class="baize">
   <div class ="deal_btn_container">
-    <%= link_to "WEAK NT", root_path(NT: 'weak'), class: "btn btn-lg btn-text text-white bg-dark mr-2" %>
-    <%= link_to "STRONG NT", root_path(NT: 'strong'), class: "btn btn-lg btn-text text-white bg-dark" %>
+    <%= link_to "CAPPELLETTI", root_path(convention: 'cappelletti'), class: "btn-primary btn btn-lg btn-text text-white bg-dark mr-2" %>
+    <%= link_to "DONT", root_path(convention: 'dont'), class: "btn-primary  btn btn-lg btn-text text-white bg-dark" %>
   </div>
   <div class ="d-flex hand-NS">
     <% @north.in_order.cards.each do |c| %>
@@ -56,10 +56,10 @@
   </div>
 
 <div class= "south-summary">
-  <div class ="ns-hand-summary mt-1">
+  <div class ="s-hand-summary ns-hand-summary mt-1">
     <span class="pr-2"><%= "#{@south.distribution_summary}" %> </span>
   </div>
-  <div class ="ns-hand-summary mt-1">
+  <div class ="s-hand-summary ns-hand-summary mt-1">
     <span class="points"><%= @south.points %></span>
   </div>
 </div>

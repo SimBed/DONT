@@ -14,13 +14,14 @@ class StaticPagesController < ApplicationController
       deck.cards = Ordered_cards.dup
       deck.shuffle
       hands = deck.deal
-      if params[:NT] == 'weak'
-        until_ind = hands[0].weak_1NT? && hands[2].weak?(12)
+      deal = Deal.new(hands[0], hands[1], hands[2], hands[3])
+      if params[:convention] == 'cappelletti'
+        until_ind = deal.cappelletti
       else
-        until_ind = hands[0].strong_1NT? && hands[2].weak?(12)
+        until_ind = deal.dont
       end
     end until until_ind
-    
+
     @hands = hands
     @west = @hands[0]
     @north = @hands[1]
