@@ -7,17 +7,25 @@ body {
   background-color: #003300;
 }
 
-.deal_btn_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
+// .convention_form_container *:not(:last-child) {
+//   margin-right: 1em;
+// }
+
+.convention_form_container input {
+  box-shadow: -3px 3px black, -2px 2px black, -1px 1px black;
 }
 
-.deal_btn_container a:first-child {
-margin-right: 1em;
-}
+// .deal_btn_container {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin-top: 1em;
+//   margin-bottom: 1em;
+// }
+
+// .deal_btn_container a:first-child {
+// margin-right: 1em;
+// }
 
 .baize {
   padding-left: 7em;

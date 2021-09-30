@@ -1,8 +1,18 @@
 <div class="baize">
-  <div class ="deal_btn_container">
-    <%= link_to "CAPPELLETTI", root_path(convention: 'cappelletti'), class: "btn-primary btn btn-lg btn-text text-white bg-dark mr-2" %>
-    <%= link_to "DONT", root_path(convention: 'dont'), class: "btn-primary  btn btn-lg btn-text text-white bg-dark" %>
-  </div>
+
+<!--default for form_with is documented as remote = true (ie ajax) but this doesn't seem to be so, hence explicit 'local:false'
+subsequently didn't use ajax so back to local:true-->
+<div class="convention_form_container container text-center my-3">
+<%= form_with url: "/static_pages", method: :get, local: true do |form| %>
+  <%= form.label :convention, 'Convention:',{class: "text-white p-1 me-1"}  %>
+    <!-- from https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/select
+    select(object, method, choices = nil, options = {}, html_options = {}, &block)
+    last two options must be in curely braces, otherwise onchange doesn't get implemented-->
+  <%= form.select :convention, [['Cappelletti', 'cappelletti'],['DONT', 'dont']], { selected: session[:convention] || 'dont'}, {class: "text-white bg-dark p-1 me-3", onchange: "this.form.submit();" }  %>
+  <%= form.submit 'DEAL', {class: "btn-secondary btn text-white bg-dark"} %>
+<% end %>
+</div>
+
   <div class ="d-flex hand-NS">
     <% @north.in_order.cards.each do |c| %>
         <div class="kard-container"><%= image_tag( "#{c.to_s}.png", class: 'kard') %></div>

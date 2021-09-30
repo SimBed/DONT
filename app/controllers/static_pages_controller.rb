@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
   Ordered_cards = Deck.new.cards
 
   def deal
+    handle_convention
     # the Deck class's deal method uses slice on deck.cards array redcuing it to [] after each deal
     deck = Deck.new
     begin
@@ -15,17 +16,29 @@ class StaticPagesController < ApplicationController
       deck.shuffle
       hands = deck.deal
       deal = Deal.new(hands[0], hands[1], hands[2], hands[3])
-      if params[:convention] == 'cappelletti'
-        until_ind = deal.cappelletti
-      else
-        until_ind = deal.dont
-      end
-    end until until_ind
+      # if params[:convention] == 'cappelletti'
+      #   until_ind = deal.cappelletti
+      # else
+      #   until_ind = deal.dont
+      # end
+    # end until until_ind
+    end until deal.send(session[:convention])
 
     @hands = hands
     @west = @hands[0]
     @north = @hands[1]
     @east = @hands[2]
     @south = @hands[3]
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
+  private
+  def handle_convention
+    session[:convention] = params[:convention]&.downcase || 'cappelletti'
+  end
+
 end
