@@ -19,11 +19,9 @@ subsequently didn't use ajax so back to local:true-->
     <% end %>
   </div>
   <div class ="ns-hand-summary mt-1">
-    <span class="pr-2"><%= "#{@north.distribution_summary}" %> </span>
+    <span class="pr-2"><%= "#{@north.distribution_summary}" %> <span class="badge"><%= @north.points %></span>
   </div>
-  <div class ="ns-hand-summary mt-1">
-    <span class="points"><%= @north.points %></span>
-  </div>
+
 
   <div class ="d-flex hand-WE">
 <div>
