@@ -1,86 +1,17 @@
 <div class="baize">
-
-<!--default for form_with is documented as remote = true (ie ajax) but this doesn't seem to be so, hence explicit 'local:false'
-subsequently didn't use ajax so back to local:true-->
-<div class="convention_form_container container text-center my-3">
-<%= form_with url: "/static_pages", method: :get, local: true do |form| %>
-  <%= form.label :convention, 'Convention:',{class: "text-white p-1 me-1"}  %>
-    <!-- from https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/select
-    select(object, method, choices = nil, options = {}, html_options = {}, &block)
-    last two options must be in curely braces, otherwise onchange doesn't get implemented-->
-  <%= form.select :convention, [['Cappelletti', 'cappelletti'],['DONT', 'dont']], { selected: session[:convention] || 'dont'}, {class: "text-white bg-dark p-1 me-3", onchange: "this.form.submit();" }  %>
-  <%= form.submit 'DEAL', {class: "btn-secondary btn text-white bg-dark"} %>
-<% end %>
-</div>
-
-  <div class ="d-flex hand-NS">
-    <% @north.in_order.cards.each do |c| %>
-        <div class="kard-container"><%= image_tag( "#{c.to_s}.png", class: 'kard') %></div>
-    <% end %>
-  </div>
-  <div class ="ns-hand-summary mt-1">
-    <span class="pr-2"><%= "#{@north.distribution_summary}" %> <span class="badge"><%= @north.points %></span>
-  </div>
-
+  <%= render partial: 'convention_to_deal' %>
+  <%= render partial: 'static_pages/hands/north' %>
 
   <div class ="d-flex hand-WE">
-<div>
-    <div class ="we-hand-summary mt-1">
-      <span class="pr-2"><%= "#{@west.distribution_summary}" %> </span>
-    </div>
-    <div class ="we-hand-summary mt-1">
-      <span class="points"><%= @west.points %></span>
-    </div>
-</div>
-
-    <div class ="d-flex flex-column hand-W">
-      <% @west.group_by_suit.each do |suit_group| %>
-         <div class="d-flex">
-           <% suit_group.each do |c| %>
-              <div class="kard-container"> <%= image_tag( "#{c.to_s}.png", class: 'kard') %> </div>
-           <% end %>
-         </div>
-      <% end %>
-    </div>
-
-	  <div class ="d-flex flex-column hand-E ms-auto">
-      <% @east.group_by_suit.each do |suit_group| %>
-			   <div class ="d-flex">
-           <% suit_group.each do |c| %>
-             <div class="kard-container"> <%= image_tag( "#{c.to_s}.png", class: 'kard') %> </div>
-           <% end %>
-			   </div>
-      <% end %>
-    </div>
-    <div>
-        <div class ="we-hand-summary mt-1">
-          <span class="pr-2"><%= "#{@east.distribution_summary}" %> </span>
-        </div>
-        <div class ="we-hand-summary mt-1">
-          <span class="points"><%= @east.points %></span>
-        </div>
-    </div>
-
+      <%= render partial: 'static_pages/hands/west' %>
+      <%= render partial: 'static_pages/hands/east' %>
   </div>
 
-<div class= "south-summary">
-  <div class ="s-hand-summary ns-hand-summary mt-1">
-    <span class="pr-2"><%= "#{@south.distribution_summary}" %> </span>
-  </div>
-  <div class ="s-hand-summary ns-hand-summary mt-1">
-    <span class="points"><%= @south.points %></span>
-  </div>
-</div>
-
-  <div class ="d-flex hand-NS mt-1">
-    <% @south.in_order.cards.each do |c| %>
-        <div class="kard-container"><%= image_tag( "#{c.to_s}.png", class: 'kard') %></div>
-    <% end %>
-  </div>
+  <%= render partial: 'static_pages/hands/south' %><div class= "south-summary">
 
   <div class ="link_container mt-4">
-      <a href="https://www.bridgebum.com/cappelletti.php" target="_blank" class= "text-white">link to Cappelletti</a>
+      <a href="https://www.bridgebum.com/cappelletti.php" target="_blank" class="text-white">link to Cappelletti</a>
   </div>
   <div class ="link_container mt-2">
-      <a href="https://www.bridgebum.com/dont.php" target="_blank" class= "text-white">link to DONT</a>
+      <a href="https://www.bridgebum.com/dont.php" target="_blank" class="text-white">link to DONT</a>
   </div>

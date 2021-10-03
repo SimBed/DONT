@@ -15,4 +15,16 @@ class Deal
     @west.strong_1NT? && @east.less_than?(a) && !@north.less_than?(b)
   end
 
+  def stayman(a = 7)
+    @west._1NT? && @east._4card_major? && !@east.less_than?(a)
+  end
+
+  def smolen(a = 7)
+    @west._1NT? && @east._4_5in_majors? && !@east.less_than?(a)
+  end
+
+  def weak2_defense
+    @west.weak2?
+  end
+
 end

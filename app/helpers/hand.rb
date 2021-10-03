@@ -74,7 +74,23 @@ class Hand
       balanced? && points.between?(15,17)
     end
 
+    def _1NT?
+      strong_1NT? || weak_1NT?
+    end
+
     def less_than?(points)
       self.points <= points
+    end
+
+    def _4card_major?
+      distribution[:H] == 4 || distribution[:S] == 4
+    end
+
+    def _4_5in_majors?
+      distribution[:H] * distribution[:S] == 20
+    end
+
+    def weak2?
+      (distribution[:D] == 6 || distribution[:H] == 6 || distribution[:S] == 6) && points.between?(4,10)
     end
   end
