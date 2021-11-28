@@ -38,7 +38,7 @@ class StaticPagesController < ApplicationController
   end
   private
   def handle_convention
-    session[:convention] = params[:convention]&.downcase || 'cappelletti'
+    session[:convention] = params[:convention]&.downcase || 'dont'
   end
 
 end

@@ -93,4 +93,22 @@ class Hand
     def weak2?
       (distribution[:D] == 6 || distribution[:H] == 6 || distribution[:S] == 6) && points.between?(4,10)
     end
+
+    def multi2d?
+      weak2inmajor?  || (four441? && points.between?(17,24))
+    end
+
+    def at_least54?(min_points: 7)
+      length_of_longest_suit * length_of_2nd_longest_suit >= 20 && self.points >= min_points
+    end
+
+    private
+      def weak2inmajor?
+        (distribution[:H] == 6 || distribution[:S] == 6) && points.between?(4,10)
+      end
+
+      def four441?
+        distribution[:C] * distribution[:D] * distribution[:H] * distribution[:S] == 64
+      end
+
   end
