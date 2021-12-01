@@ -27,6 +27,10 @@ class Deal
     @west.multi2d?
   end
 
+  def muiderberg
+    @west.muiderberg?
+  end
+
   def stayman(a = 7)
     @west._1NT? && @east._4card_major? && !@east.less_than?(a)
   end
