@@ -28,6 +28,12 @@ class Deck # :nodoc:
     end
   end
 
+  def spin
+    shuffle
+    hands = self.deal
+    Deal.new(hands[0], hands[1], hands[2], hands[3])
+  end
+
   private
 
   def build_deck

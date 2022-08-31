@@ -16,12 +16,6 @@ class StaticPagesController < ApplicationController
       deck.shuffle
       hands = deck.deal
       deal = Deal.new(hands[0], hands[1], hands[2], hands[3])
-      # if params[:convention] == 'cappelletti'
-      #   until_ind = deal.cappelletti
-      # else
-      #   until_ind = deal.dont
-      # end
-    # end until until_ind
     end until deal.send(session[:convention])
 
     @hands = hands

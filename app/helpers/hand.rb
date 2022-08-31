@@ -21,6 +21,10 @@ class Hand
       suit_count
     end
 
+    def nth_longest_suit(n: 1)
+      distribution.sort_by(&:last)[distribution.size - n][0]
+    end
+
     def length_of_longest_suit
       distribution.values.max
     end
@@ -102,8 +106,20 @@ class Hand
       _5major_4plusminor? && points.between?(5, 10)
     end
 
-    def at_least54?(min_points: 7)
-      length_of_longest_suit * length_of_2nd_longest_suit >= 20 && self.points >= min_points
+    def at_least54?(min_points: 0, max_points: 100)
+      (length_of_longest_suit * length_of_2nd_longest_suit >= 20) && points.between?(min_points, max_points)
+    end
+
+    def weak?(max_points:  7)
+      length_of_longest_suit <= 5 && points.between?(0, max_points)
+    end
+
+    def no_support?(*suits)
+      no_support = true
+      suits.each do |suit|
+        (no_support = false && break) if distribution[suit] > 2
+      end
+      no_support
     end
 
     private

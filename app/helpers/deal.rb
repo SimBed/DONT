@@ -1,5 +1,7 @@
 class Deal
 
+  attr_accessor :west, :north, :east, :south
+
   def initialize(west, north, east, south)
     @west = west
     @north = north
@@ -46,6 +48,14 @@ class Deal
 
   def weak2_defense
     @west.weak2?
+  end
+
+  def blackout
+    @west.at_least54?(min_points: 16, max_points: 21) &&
+    @east.no_support?(@west.nth_longest_suit(n: 1), @west.nth_longest_suit(n: 2)) &&
+    !@east.balanced? &&
+    @east.points.between?(5,14) &&
+    @north.weak?(max_points:  10) && @south.weak?(max_points:  10)
   end
 
 end
